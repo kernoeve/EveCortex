@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/kernoeve/EveCortex/main/Assets/logo.png" alt="Eve Cortex" width="160">
+  <img src="https://raw.githubusercontent.com/kernoeve/EveCortex/develop/docs/images/banner.png" alt="Eve Cortex">
 </p>
 
 # Eve Cortex Wiki
