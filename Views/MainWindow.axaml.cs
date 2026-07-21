@@ -249,6 +249,10 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
     // fall back to offering an SDE update when a newer build is available.
     private async Task HandleStartupFlowAsync(MainWindowViewModel vm)
     {
+        // Eve Cortex has been renamed to EVE Console. This is the final Eve Cortex release —
+        // greet every launch with the move notice so existing users find their way across.
+        await new MovedWindow().ShowDialog(this);
+
         var welcomeShown = vm.AppPrefs.Get("app.welcome_shown") == "true";
         var sdeImported  = await vm.SdeVm.IsSdeImportedAsync();
 
