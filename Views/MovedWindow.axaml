@@ -1,0 +1,62 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="EveCortex.Views.MovedWindow"
+        Title="Eve Cortex has moved"
+        Icon="avares://EveCortex/Assets/ec.ico"
+        Width="480"
+        SizeToContent="Height"
+        CanResize="False"
+        WindowStartupLocation="CenterOwner"
+        Background="#0d0d12">
+
+  <StackPanel Margin="36 30 36 26" Spacing="0">
+
+    <!-- Rename heading -->
+    <TextBlock Text="Eve Cortex is now"
+               FontSize="13" Foreground="#aaaabc"
+               HorizontalAlignment="Center" Margin="0 0 0 2" />
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 6">
+      <TextBlock Text="EVE "
+                 FontSize="26" FontWeight="Bold"
+                 Foreground="#e8e8ec" />
+      <TextBlock Text="Console"
+                 FontSize="26" FontWeight="Bold"
+                 Foreground="#c8a84b" />
+    </StackPanel>
+
+    <Rectangle Height="1" Fill="#1e1e28" Margin="0 18 0 20" />
+
+    <!-- Final-release notice -->
+    <TextBlock FontSize="13" Foreground="#aaaabc" TextWrapping="Wrap" LineHeight="20"
+               Margin="0 0 0 14"
+               Text="This is the final release of Eve Cortex — the project has been renamed to EVE Console and continues there under active development." />
+
+    <!-- Migration reassurance -->
+    <TextBlock FontSize="13" Foreground="#aaaabc" TextWrapping="Wrap" LineHeight="20"
+               Margin="0 0 0 14"
+               Text="Download EVE Console to keep receiving updates. The first time you run it, your settings and database are copied over automatically, so you pick up right where you left off." />
+
+    <!-- Old app keeps working -->
+    <TextBlock FontSize="13" Foreground="#aaaabc" TextWrapping="Wrap" LineHeight="20"
+               Margin="0 0 0 4"
+               Text="You can keep using Eve Cortex in the meantime — it will keep working, but it won't receive any further updates." />
+
+    <Rectangle Height="1" Fill="#1e1e28" Margin="0 22 0 18" />
+
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="12">
+      <Button x:Name="DownloadButton"
+              Content="Download EVE Console"
+              Background="#c8a84b" Foreground="#0d0d12"
+              FontWeight="SemiBold" FontSize="13"
+              Padding="22 8"
+              Click="OnDownloadClick" />
+      <Button x:Name="LaterButton"
+              Content="Not now"
+              FontSize="13"
+              Padding="18 8"
+              Click="OnLaterClick" />
+    </StackPanel>
+
+  </StackPanel>
+
+</Window>

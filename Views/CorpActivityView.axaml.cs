@@ -25,6 +25,12 @@ public partial class CorpActivityView : UserControl
             _ = TopLevel.GetTopLevel(this)?.Clipboard?.SetTextAsync(text);
         };
 
+        PostTop10SlackButton.Click += (_, _) =>
+        {
+            if (DataContext is not CorpActivityViewModel vm) return;
+            _ = vm.PostTop10ToSlackAsync(includeIsk: false);
+        };
+
         Kill24hList.DoubleTapped += OnKill24hDoubleTapped;
         DataContextChanged += OnDataContextChanged;
     }
@@ -44,6 +50,12 @@ public partial class CorpActivityView : UserControl
         {
             var dialog = new StandingProjectDialog(vm.Service, existing);
             return await dialog.ShowDialog<CorpStandingProject?>(GetWindow());
+        };
+
+        vm.ConfirmSlackRepost = async (message) =>
+        {
+            var dlg = new ConfirmDialog(message);
+            return await dlg.ShowDialog<bool>(GetWindow());
         };
 
         vm.ConfirmDelete = async () =>

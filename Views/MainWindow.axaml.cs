@@ -249,6 +249,10 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
     // fall back to offering an SDE update when a newer build is available.
     private async Task HandleStartupFlowAsync(MainWindowViewModel vm)
     {
+        // Eve Cortex has been renamed to EVE Console. This is the final Eve Cortex release —
+        // greet every launch with the move notice so existing users find their way across.
+        await new MovedWindow().ShowDialog(this);
+
         var welcomeShown = vm.AppPrefs.Get("app.welcome_shown") == "true";
         var sdeImported  = await vm.SdeVm.IsSdeImportedAsync();
 
@@ -376,12 +380,14 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
         var settingsVm = new SettingsViewModel(vm.CharacterVm, vm.SdeVm, vm.UpdateVm, vm.MarketVm, vm.TimerVm,
                                                vm.AgentVm.Service, vm.PriceHistorySettingsVm,
                                                vm.AlertSettingsVm, vm.PollingSettingsVm,
-                                               vm.CorpTop10SettingsVm, dbVm,
+                                               vm.CorpTop10SettingsVm, dbVm, vm.SlackSettingsVm,
                                                vm.TtsService, vm.SpeechInputService, vm.HotkeyService);
         var settingsWin = new SettingsWindow { DataContext = settingsVm };
         settingsWin.WireDatabase(dbVm, this);
         if (initialTab is not null) settingsWin.SelectTab(initialTab);
         await settingsWin.ShowDialog(this);
+        // Slack token / channel may have changed — re-evaluate the post buttons' visibility.
+        vm.CorpActivityVm.RefreshSlackState();
     }
 
     private void OnResolveNamesClick(object? sender, RoutedEventArgs e)
